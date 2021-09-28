@@ -91,7 +91,14 @@ def same_diff_ints(ints):
     >>> same_diff_ints([1,3,5,7,9])
     False
     """
-    ...
+    # condition for empty???
+    start_index_diff = 1
+    while not True or start_index_diff < len(ints):
+        for i in range(0, start_index_diff, len(ints)-1):
+            if start_index_diff == (abs(ints[i] - ints[i+start_index_diff])):
+                return True
+        start_index_diff += 1
+    return False
 
 
 # ---------------------------------------------------------------------
@@ -116,7 +123,11 @@ def n_prefixes(s, n):
     >>> n_prefixes('aaron', 2)
     'aaa'
     """
-    ...
+    string = ''
+    # iterate backwards to get index of last string slice
+    for i in range(n, -1, -1):
+        string += s[0:i]
+    return string
 
 
 # ---------------------------------------------------------------------
@@ -140,7 +151,21 @@ def exploded_numbers(ints, n):
     >>> exploded_numbers([3, 8, 15], 2)
     ['01 02 03 04 05', '06 07 08 09 10', '13 14 15 16 17']
     """
-    ...
+    output = []
+    double_digit = False
+    if any(element > 9 for element in ints):
+        # account for double digits with zero padded
+        double_digit = True
+    for i in ints:
+        string = ''
+        for k in range(i-n, i+n+1):
+            string += ' '
+            if double_digit and k < 10:
+                # zero pad the number
+                string += '0'
+            string += str(k)
+        output.append(string.lstrip(' '))
+    return output
 
 
 # ---------------------------------------------------------------------
