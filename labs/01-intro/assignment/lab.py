@@ -58,7 +58,18 @@ def median_vs_average(nums):
     >>> median_vs_average([1, 2, 3, 4])
     True
     '''
-    ...
+    # median first, check if even or odd
+    if len(nums)%2 == 0:
+        # even, average of 2 middle
+        middle_index1, middle_index2 = len(nums)//2, (len(nums)//2)-1
+        median = (nums[middle_index1] + nums[middle_index2]) / 2
+    else:
+        # odd
+        middle_index = len(nums)//2
+        median = nums[middle_index]
+    # mean calc same either way
+    mean = sum(nums) / len(nums)
+    return median >= mean
 
 
 # ---------------------------------------------------------------------
